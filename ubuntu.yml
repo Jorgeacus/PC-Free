@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  ubuntu:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    container_name: ubuntu-desktop
+    environment:
+      USERNAME: ${UBUNTU_USERNAME:marcus}
+      PASSWORD: ${UBUNTU_PASSWORD:0967}
+      RAM_SIZE: "10G"
+      CPU_CORES: "4"
+      VNC_PASSWORD: ${VNC_PASSWORD:jamarcus}
+      VNC_RESOLUTION: 1920x1080
+    ports:
+      - "6080:80"
+      - "3389:3389"
+    volumes:
+      - /tmp/ubuntu-data:/home/${UBUNTU_USERNAME}
+    restart: unless-stopped
+
+volumes:
+  ubuntu-data:
